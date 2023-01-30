@@ -104,4 +104,12 @@ Under ```DBConnection.php``` certain changes must be made:
     private $database = "lms_db";
 ```
 If the system will be host on other platform, this settings must be change such as the username and the password. But on this machine, the machine is configured in a same way it is configured in the localhost environment. Therefore configuration can be leave as it's default configuration.
-After that, the database of the project must be import at the sql server of the host. The database file is located at 
+After that, the database of the project must be import at the sql server of the host. The database file is located at:
+```
+/var/www/html/database/
+```
+# Domain Configuration
+Up to this point, the website is fully functional and can be access outside the localhost. However, leaving the ip expose and not giving it a domain name is a huge security threat of the system. Therefore it is assinged with a domain.
+Noip.com is the domain provider of the domain used in this system.
+After setting up a domain on noip domain provider, it must be configured on digital ocean. For that, you must create a droplet for dns.
+After Setting up a droplet, you must enter the domain name that the noip provide, and direct it to the machine where the website is hosted.
