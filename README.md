@@ -78,4 +78,30 @@ After the installation, accessing phpmyadmin can be done in two ways, via localh
 ```
 The credentials of the mysql server in the machine is ```root``` being the username and password
 
-# Importing the database and deploying the system
+# Deployment of the system and importing the database
+To be able to deploy the project, it must be download from the github repo and must be placed on the machine. The repo link will be paste below.
+```
+https://github.com/akkibet/leadmanagement
+```
+After downloading, the project file must be placed under the directory of the apache server. To move the file from downloads directory to apache2 server directory, issue the following command:
+```
+sudo mv /home/leadhostDownloads/lms/* /var/www/html
+```
+After moving the file, configuration settings of the project must be edit. The file that needs to be edit are ```initialize.php``` and ```DBConnection.php``` under ```/var/www/html/classes```
+Under ```initialize.php``` the line that needs to be change is:
+```
+From
+if(!defined('base_url')) define('base_url','http://localhost/lms/');
+To
+if(!defined('base_url')) define('base_url','../');
+```
+Since we will be accessing the website outside it's localhost, it must be fetch from parent directory otherwise the url will turn to localhost.
+Under ```DBConnection.php``` certain changes must be made:
+```
+    private $host = "localhost";
+    private $username = "root";
+    private $password = "root";
+    private $database = "lms_db";
+```
+If the system will be host on other platform, this settings must be change such as the username and the password. But on this machine, the machine is configured in a same way it is configured in the localhost environment. Therefore configuration can be leave as it's default configuration.
+After that, the database of the project must be import at the sql server of the host. The database file is located at 
